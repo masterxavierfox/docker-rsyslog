@@ -1,4 +1,6 @@
-[![](https://badge.imagelayers.io/robbert229/rsyslog:latest.svg)](https://imagelayers.io/?images=robbert229/rsyslog:latest 'Get your own badge on imagelayers.io')
+[![](https://images.microbadger.com/badges/image/masterfox/rsyslog.svg)](https://microbadger.com/images/masterfox/rsyslog "Get your own image badge on microbadger.com")
+
+[![](https://images.microbadger.com/badges/version/masterfox/rsyslog.svg)](https://microbadger.com/images/masterfox/rsyslog "Get your own version badge on microbadger.com")
 
 ## Rsyslog Dockerfile
 
