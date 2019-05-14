@@ -25,3 +25,6 @@ Or For docker-compose
         volumes:
         - "./syslog:/var/log/syslog"
 
+To deploy to kubernetes run the comand below from the root:
+
+    helm install --namespace "development" -n "radrsyslog" ./radrsyslog
