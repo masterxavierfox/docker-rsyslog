@@ -4,7 +4,7 @@
 
 Rsyslog running in a linux container as a server, listening on 514 (tcp and udp), and writing to /var/log/syslog; which will be sent to ELK stack via filebeat agent.
 
-### Usage
+### Deploy
 
 This container will listen on 514/udp, and 514/tcp and write it to /var/log/syslog.
 
