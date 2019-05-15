@@ -1,0 +1,87 @@
+######################## Filebeat Configuration ############################
+
+name: rag-logs
+
+fields:
+  env: production
+
+
+# ==========================  Modules configuration =============================
+filebeat.modules:
+
+#-------------------------------- System Module --------------------------------
+- module: system
+  # Syslog
+  syslog:
+    enabled: true
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    var.paths: [/var/log/remote/*/*.log]
+    # var.paths: ["/var/log/remote*"]
+
+    # Convert the timestamp to UTC. Requires Elasticsearch >= 6.1.
+    var.convert_timezone: true
+
+    # Input configuration (advanced). Any input configuration option
+    # can be added under this section.
+    # input:
+
+  # Authorization logs
+  auth:
+    enabled: false
+
+    # Set custom paths for the log files. If left empty,
+    # Filebeat will choose the paths depending on your OS.
+    #var.paths:
+
+    # Convert the timestamp to UTC. Requires Elasticsearch >= 6.1.
+    #var.convert_timezone: false
+
+    # Input configuration (advanced). Any input configuration option
+    # can be added under this section.
+    #input:
+
+
+# filebeat.config.modules:
+#   path: ${path.config}/modules.d/*.yml
+
+
+processors:
+  - add_host_metadata: ~
+  - add_cloud_metadata: ~
+  # - add_kubernetes_metadata:
+  #     in_cluster: true
+  # - add_tags:
+  #     tags: [$SERVICE_ID]
+  #     target: "${SERVICE_ENV}"
+  # - add_fields:
+  #     target: ${SERVICE_ENV}
+  #     fields:
+  #       name: ${SERVICE_ID}  
+  # - dissect:
+  #    tokenizer: "%{FROMHOST} - %{programname}"
+  #    field: "message"
+  #    target_prefix: "dissect"
+
+
+#============================= Elastic Cloud ==================================
+
+cloud.id : ${CLOUD_ID}
+cloud.auth: ${CLOUD_AUTH}
+
+#================================ Logging ======================================
+# There are four options for the log output: file, stderr, syslog, eventlog
+# The file output is the default.
+
+#logging.level: info
+#logging.to_syslog: true
+
+# If enabled, filebeat periodically logs its internal metrics that have changed
+# in the last period. For each metric that changed, the delta from the value at
+# the beginning of the period is logged. Also, the total values for
+# all non-zero internal metrics are logged on shutdown. The default is true.
+logging.metrics.enabled: false
+
+# The period after which to log the internal metrics. The default is 30s.
+logging.metrics.period: 60s
