@@ -1,0 +1,9 @@
+version: '3.4'
+services:
+  rsyslog:
+    image: masterfox/rsyslog
+    ports:
+    - 514:514/udp
+    - 514:514
+    volumes:
+    - "./syslog:/var/log/syslog"
