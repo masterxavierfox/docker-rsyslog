@@ -30,7 +30,7 @@ Run below compose command to use compose file in repo:
 
     docker-compose up
 
-To deploy to kubernetes run the comand below from the root:
+To deploy to kubernetes run the comand below from the root to deploy the helm chart:
 
     helm install --namespace "development" -n "radrsyslog" ./radrsyslog
 
