@@ -2,8 +2,7 @@ FROM alpine
 MAINTAINER Xavier Fox <tech@foxwilltech.com>
 
 RUN apk add --no-cache rsyslog
-# COPY ./rsyslogd.conf /etc/rsyslogd.conf
-# COPY ./rsysloged.conf /etc/rsysloged.conf
+
 COPY ./rsyslograd.conf /etc/rsyslog.conf
 RUN mkdir /var/spool/rsyslog
 
@@ -28,12 +27,6 @@ VOLUME /filebeat/data
 
 WORKDIR /filebeat/
 
-EXPOSE 514/tcp 
-#514/udp
-# ENTRYPOINT ["rsyslogd", "-f", "/etc/rsyslogd.conf","-N","1",]
-# RUN ./filebeat modules enable system
+EXPOSE 514/tcp 514/udp
 
-
-# CMD ["rsyslogd", "-f", "/etc/rsyslogd.conf","./filebeat","-e","-c", "filebeat.yml"]
 CMD rsyslogd -f /etc/rsyslog.conf && ./filebeat -e -c filebeat.yml
-# CMD rsyslogd -dn -f /etc/rsyslog.conf

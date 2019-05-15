@@ -2,11 +2,11 @@
 
 ## Rsyslog + Filebeat Dockerfile
 
-Rsyslog running in a linux container as a server, listening on 514 (tcp and udp), and writing to /var/log/syslog; which will be sent to ELK stack via filebeat agent.
+Rsyslog running in a linux container as a server, listening on `514 (tcp and udp)`, and writing to `/var/log/syslog`; which will be sent to ELK stack via filebeat agent.
 
 ### Deploy
 
-This container will listen on 514/udp, and 514/tcp and write it to /var/log/syslog.
+This container will listen on `514/udp`, and `514/tcp` and write it to `/var/log/syslog`.
 
 Use command below to run:
 
@@ -34,10 +34,11 @@ To deploy to kubernetes run the comand below from the root to deploy the helm ch
 
     helm install --namespace "development" -n "radrsyslog" ./radrsyslog
 
+**NOTE**: for the K8 deployment decide if you want to run on the UDP or TCP port then deploy accordingly. Curently it deploys to TCP.
 
 ### To Build
 
-The file beat agent connectt to elastic cloud kibana so make sure to set your cloud credentials in the build command below or in the filebeat.yml
+The file beat agent connectt to elastic cloud kibana so make sure to set your cloud credentials `CLOUD_ID` and `CLOUD_AUTH` in the build command below or in the `filebeat.yml`
 
 run: 
 
