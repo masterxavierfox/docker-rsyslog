@@ -25,6 +25,9 @@ Or For docker-compose
         volumes:
         - "./syslog:/var/log/syslog"
 
+
+Run below compose command to use compose file in repo:
+
     docker-compose up
 
 To deploy to kubernetes run the comand below from the root:
